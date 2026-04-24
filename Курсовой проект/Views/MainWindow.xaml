@@ -1,0 +1,76 @@
+﻿<Window x:Class="Курсовой_проект.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="Решение ДУ модифицированным методом Эйлера" Height="700" Width="900">
+
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="10,5"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Параметры задачи" Grid.Row="0" Margin="5">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label>f(x,y) =</Label>
+                <TextBox x:Name="txtFunction" Width="200" Text="{Binding Function, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Label Margin="20,0,0,0">x0 =</Label>
+                <TextBox x:Name="txtX0" Width="50" Text="{Binding X0}"/>
+
+                <Label Margin="10,0,0,0">y0 =</Label>
+                <TextBox x:Name="txtY0" Width="50" Text="{Binding Y0}"/>
+
+                <Label Margin="10,0,0,0">X =</Label>
+                <TextBox x:Name="txtX" Width="50" Text="{Binding X}"/>
+
+                <Label Margin="10,0,0,0">h =</Label>
+                <TextBox x:Name="txtH" Width="50" Text="{Binding H}"/>
+            </StackPanel>
+        </GroupBox>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
+            <Button x:Name="btnCalculate" Content="Рассчитать" Width="100" Height="30" Command="{Binding CalculateCommand}"/>
+            <Button x:Name="btnExcel" Content="Экспорт в Excel" Width="120" Height="30" Command="{Binding ExportToExcelCommand}"/>
+            <Button x:Name="btnWord" Content="Отчёт в Word" Width="120" Height="30" Command="{Binding CreateWordReportCommand}"/>
+            <Button x:Name="btnMatlab" Content="Экспорт в MATLAB" Width="140" Height="30" Command="{Binding ExportToMatlabCommand}"/>
+            <Button x:Name="btnMathcad" Content="Интеграция с Mathcad" Width="160" Height="30" Command="{Binding IntegrateWithMathcadCommand}"/>
+            <Button x:Name="btnMatlab3D" Content="3D График в MATLAB" Width="160" Height="30" Command="{Binding Show3DInMatlabCommand}" Background="LightGreen"/>
+        </StackPanel>
+
+        <GroupBox Header="Результаты" Grid.Row="2" Margin="5">
+            <DataGrid x:Name="dgResults" 
+                      ItemsSource="{Binding Results}" 
+                      AutoGenerateColumns="True" 
+                      Height="150"
+                      IsReadOnly="True"/>
+        </GroupBox>
+
+        <GroupBox Header="График решения" Grid.Row="3" Margin="5">
+            <oxy:PlotView x:Name="plotView" Model="{Binding PlotModel}" />
+        </GroupBox>
+
+        <StatusBar Grid.Row="4">
+            <StatusBarItem>
+                <TextBlock x:Name="txtStatus" Text="{Binding Status}"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
