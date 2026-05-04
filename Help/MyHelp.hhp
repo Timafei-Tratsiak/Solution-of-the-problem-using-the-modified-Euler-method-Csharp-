@@ -1,0 +1,12 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=MyHelp.chm
+Default topic=index.htm
+Title=Sparavka o programme
+
+[FILES]
+index.htm
+interface.htm
+algorithm.htm
+integration.htm
+export.htm

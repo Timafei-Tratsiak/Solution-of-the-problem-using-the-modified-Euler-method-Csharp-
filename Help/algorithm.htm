@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Справка - Алгоритм</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        h1 { color: #2C3E50; }
+        h2 { color: #3498DB; }
+        .section { background-color: white; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        code { background-color: #eee; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        pre { background-color: #2C3E50; color: #ecf0f1; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .formula { font-size: 18px; font-family: monospace; background-color: #eee; padding: 10px; text-align: center; border-radius: 5px; }
+        .menu { background-color: #2C3E50; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .menu a { color: white; text-decoration: none; margin-right: 15px; }
+        .menu a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="index.htm">Главная</a>
+        <a href="interface.htm">Интерфейс</a>
+        <a href="algorithm.htm">Алгоритм</a>
+        <a href="integration.htm">Интеграция</a>
+        <a href="export.htm">Экспорт</a>
+    </div>
+
+    <h1>Модифицированный метод Эйлера</h1>
+    
+    <div class="section">
+        <h2> Математическая постановка задачи</h2>
+        <p>Решается задача Коши для обыкновенного дифференциального уравнения первого порядка:</p>
+        <div class="formula">
+            <strong>dy/dx = f(x, y),  y(x0) = y0</strong>
+        </div>
+        <p>на отрезке [x0, X] с шагом h.</p>
+    </div>
+
+    <div class="section">
+        <h2> Формула метода</h2>
+        <p>Модифицированный метод Эйлера (метод Эйлера-Коши) имеет второй порядок точности:</p>
+        <div class="formula">
+            <strong>y_new = y + h · f(x + h/2, y + (h/2) · f(x, y))</strong>
+        </div>
+        <p>Алгоритм:</p>
+        <pre>
+1. Задать начальные значения x0, y0
+2. Вычислить количество шагов: n = (X - x0) / h
+3. Для i = 0 до n-1:
+   x = x0 + i·h
+   y_new = y + h·f(x + h/2, y + (h/2)·f(x, y))
+   x = x + h
+   y = y_new
+   Запомнить (x, y)
+4. Построить график полученных точек</pre>
+    </div>
+</body>
+</html>

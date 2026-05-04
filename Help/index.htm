@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Справка - Главная</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        h1 { color: #2C3E50; }
+        h2 { color: #3498DB; }
+        p { line-height: 1.6; }
+        .section { background-color: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        ul { margin-left: 20px; }
+        li { margin: 5px 0; }
+        .menu { background-color: #2C3E50; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .menu a { color: white; text-decoration: none; margin-right: 15px; }
+        .menu a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="index.htm">Главная</a>
+        <a href="interface.htm">Интерфейс</a>
+        <a href="algorithm.htm">Алгоритм</a>
+        <a href="integration.htm">Интеграция</a>
+        <a href="export.htm">Экспорт</a>
+    </div>
+
+    <h1>Решение дифференциальных уравнений</h1>
+    <h2>Модифицированный метод Эйлера</h2>
+    
+    <div class="section">
+        <h2> О программе</h2>
+        <p>Программа предназначена для численного решения обыкновенных дифференциальных уравнений первого порядка вида dy/dx = f(x, y) с использованием модифицированного метода Эйлера (метода Эйлера-Коши).</p>
+    </div>
+
+    <div class="section">
+        <h2>Основные возможности</h2>
+        <ul>
+            <li>Решение ДУ модифицированным методом Эйлера</li>
+            <li>Визуализация решения в виде 2D графика (OxyPlot)</li>
+            <li>Таблица результатов (x, y, f(x,y))</li>
+            <li>Автоматический пересчёт при изменении параметров</li>
+            <li>Экспорт в Excel (таблица + график на одном листе)</li>
+            <li>Экспорт в Word (полный отчёт с графиком)</li>
+            <li>Интеграция с MATLAB (вызов ode45, 3D графики)</li>
+            <li>Интеграция с Mathcad Prime (передача параметров)</li>
+            <li>Сохранение графика в PNG</li>
+            <li>Автоматическое сохранение/загрузка параметров (INI)</li>
+            <li>MVVM архитектура</li>
+            <li>Асинхронный вызов MATLAB</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Справка - Экспорт</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        h1 { color: #2C3E50; }
+        h2 { color: #3498DB; }
+        .section { background-color: white; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .menu { background-color: #2C3E50; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .menu a { color: white; text-decoration: none; margin-right: 15px; }
+        .menu a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="index.htm">Главная</a>
+        <a href="interface.htm">Интерфейс</a>
+        <a href="algorithm.htm">Алгоритм</a>
+        <a href="integration.htm">Интеграция</a>
+        <a href="export.htm">Экспорт</a>
+    </div>
+
+    <h1>Экспорт данных</h1>
+    
+    <div class="section">
+        <h2> Экспорт в Excel</h2>
+        <p>Создаётся Excel-файл (.xlsx) с одним листом, содержащим:</p>
+        <ul>
+            <li>Таблицу результатов (x, y, f(x,y))</li>
+            <li>График решения y(x) построенный по точкам</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2> Экспорт в Word</h2>
+        <p>Создаётся структурированный отчёт в формате .docx, включающий:</p>
+        <ul>
+            <li>Титульный лист и заголовки</li>
+            <li>Параметры задачи</li>
+            <li>Описание метода решения</li>
+            <li>Таблицу результатов (первые 15 и последние 5 строк)</li>
+            <li>График решения (внедрённое изображение PNG)</li>
+            <li>Заключение</li>
+        </ul>

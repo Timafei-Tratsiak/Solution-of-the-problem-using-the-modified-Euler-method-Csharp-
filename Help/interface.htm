@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Справка - Интерфейс</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        h1 { color: #2C3E50; }
+        h2 { color: #3498DB; }
+        .section { background-color: white; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; }
+        td, th { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #3498DB; color: white; }
+        .shortcut { font-family: monospace; background-color: #eee; padding: 2px 5px; border-radius: 3px; }
+        .menu { background-color: #2C3E50; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .menu a { color: white; text-decoration: none; margin-right: 15px; }
+        .menu a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="index.htm">Главная</a>
+        <a href="interface.htm">Интерфейс</a>
+        <a href="algorithm.htm">Алгоритм</a>
+        <a href="integration.htm">Интеграция</a>
+        <a href="export.htm">Экспорт</a>
+    </div>
+
+    <h1>Интерфейс программы</h1>
+    
+    <div class="section">
+        <h2>📊 Главное окно</h2>
+        <p>Главное окно программы разделено на несколько областей:</p>
+        <ul>
+            <li><strong>Меню</strong> - доступ ко всем функциям программы</li>
+            <li><strong>Панель инструментов (ToolBar)</strong> - быстрый доступ к основным командам</li>
+            <li><strong>Параметры задачи</strong> - ввод начальных условий и функции</li>
+            <li><strong>Таблица результатов</strong> - отображение значений x, y, f(x,y)</li>
+            <li><strong>График решения</strong> - визуализация полученного решения</li>
+            <li><strong>Статусная строка</strong> - отображение текущего состояния</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>⌨️ Горячие клавиши</h2>
+        <table>
+            <tr><th>Клавиша</th><th>Действие</th></tr>
+            <tr><td class="shortcut">F5</td><td>Выполнить расчёт</td></tr>
+            <tr><td class="shortcut">F1</td><td>Вызов справки</td></tr>
+            <tr><td class="shortcut">Ctrl+E</td><td>Экспорт в Excel</td></tr>
+            <tr><td class="shortcut">Ctrl+W</td><td>Экспорт в Word</td></tr>
+            <tr><td class="shortcut">Ctrl+S</td><td>Сохранить график</td></tr>
+        </table>
+    </div>
+</body>
+</html>

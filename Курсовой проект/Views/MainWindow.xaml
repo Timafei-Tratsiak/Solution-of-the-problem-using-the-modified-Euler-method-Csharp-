@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Title="Решение ДУ модифицированным методом Эйлера" Height="750" Width="950">
 
+    <!-- ГОРЯЧИЕ КЛАВИШИ -->
+    <Window.InputBindings>
+        <KeyBinding Key="F5" Command="{Binding CalculateCommand}"/>
+        <KeyBinding Key="F1" Command="ApplicationCommands.Help"/>
+        <KeyBinding Key="E" Modifiers="Control" Command="{Binding ExportToExcelCommand}"/>
+        <KeyBinding Key="W" Modifiers="Control" Command="{Binding CreateWordReportCommand}"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveGraphAsPngCommand}"/>
+    </Window.InputBindings>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="HelpExecuted"/>
+    </Window.CommandBindings>
+
     <Window.Resources>
         <Style TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -14,58 +27,171 @@
         </Style>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="2"/>
-            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Padding" Value="8,3"/>
         </Style>
         <Style TargetType="GroupBox">
             <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="ToolBar">
+            <Setter Property="Margin" Value="5,0,5,5"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
     </Window.Resources>
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <!-- Menu -->
             <RowDefinition Height="Auto"/>
+            <!-- ToolBar -->
             <RowDefinition Height="Auto"/>
+            <!-- Параметры задачи -->
+            <RowDefinition Height="Auto"/>
+            <!-- Таблица -->
             <RowDefinition Height="*"/>
+            <!-- График -->
             <RowDefinition Height="Auto"/>
+            <!-- StatusBar -->
         </Grid.RowDefinitions>
 
-        <!-- Параметры задачи -->
-        <GroupBox Header="Параметры задачи" Grid.Row="0">
+        <!-- ===== МЕНЮ ===== -->
+        <Menu Grid.Row="0" Margin="0,0,0,5">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Сохранить график" Command="{Binding SaveGraphAsPngCommand}"/>
+                <Separator/>
+                <MenuItem Header="Экспорт в Excel" Command="{Binding ExportToExcelCommand}"/>
+                <MenuItem Header="Экспорт в Word" Command="{Binding CreateWordReportCommand}"/>
+                <Separator/>
+                <MenuItem Header="Выход" Command="{Binding ExitCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Расчёт">
+                <MenuItem Header="Выполнить расчёт" Command="{Binding CalculateCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Интеграция">
+                <MenuItem Header="MATLAB (ode45)" Command="{Binding ExportToMatlabCommand}"/>
+                <MenuItem Header="Mathcad Prime" Command="{Binding IntegrateWithMathcadCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Помощь">
+                <MenuItem Header="Справка" Command="ApplicationCommands.Help"/>
+                <Separator/>
+                <MenuItem Header="О программе" Command="{Binding ShowAboutCommand}"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- ===== ПАНЕЛЬ ИНСТРУМЕНТОВ (TOOLBAR) ===== -->
+        <ToolBar Grid.Row="1">
+            <Button Command="{Binding CalculateCommand}" ToolTip="Выполнить расчёт (F5)">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="▶️ " FontSize="14"/>
+                    <TextBlock Text="Рассчитать"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Command="{Binding ExportToExcelCommand}" ToolTip="Экспорт результатов в Excel">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="📊 " FontSize="14"/>
+                    <TextBlock Text="Excel"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding CreateWordReportCommand}" ToolTip="Создать отчёт в Word">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="📄 " FontSize="14"/>
+                    <TextBlock Text="Word"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Command="{Binding ExportToMatlabCommand}" ToolTip="Интеграция с MATLAB (ode45)">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="🔬 " FontSize="14"/>
+                    <TextBlock Text="MATLAB"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding IntegrateWithMathcadCommand}" ToolTip="Интеграция с Mathcad Prime">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="🧮 " FontSize="14"/>
+                    <TextBlock Text="Mathcad"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Command="{Binding SaveGraphAsPngCommand}" ToolTip="Сохранить график в PNG">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="💾 " FontSize="14"/>
+                    <TextBlock Text="PNG"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
+
+            <!-- НОВАЯ КНОПКА СПРАВКИ -->
+            <Button Command="ApplicationCommands.Help" ToolTip="Справка (F1)">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="❓ " FontSize="14"/>
+                    <TextBlock Text="Справка"/>
+                </StackPanel>
+            </Button>
+
+            <Separator/>
+            <Button Command="{Binding ShowAboutCommand}" ToolTip="О программе">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="ℹ️ " FontSize="14"/>
+                    <TextBlock Text="О программе"/>
+                </StackPanel>
+            </Button>
+        </ToolBar>
+
+        <!-- ===== ПАРАМЕТРЫ ЗАДАЧИ ===== -->
+        <GroupBox Header="Параметры задачи" Grid.Row="2" Margin="5">
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label>f(x,y) =</Label>
                 <TextBox x:Name="txtFunction" Width="220" Text="{Binding Function, UpdateSourceTrigger=PropertyChanged}"/>
 
+                <!-- ВЫПАДАЮЩИЙ СПИСОК ФУНКЦИЙ -->
+                <ComboBox x:Name="cmbFunctions" Width="150" Margin="10,0,0,0"
+                  IsEditable="True"
+                  IsReadOnly="True"
+                  Text="Базовые функции"
+                  SelectionChanged="CmbFunctions_SelectionChanged">
+                    <ComboBoxItem Content="sin(x)" Tag="sin(x)"/>
+                    <ComboBoxItem Content="cos(x)" Tag="cos(x)"/>
+                    <ComboBoxItem Content="tan(x)" Tag="tan(x)"/>
+                    <ComboBoxItem Content="sin(y)" Tag="sin(y)"/>
+                    <ComboBoxItem Content="cos(y)" Tag="cos(y)"/>
+                    <ComboBoxItem Content="tan(y)" Tag="tan(y)"/>
+                    <ComboBoxItem Content="exp(x)" Tag="exp(x)"/>
+                    <ComboBoxItem Content="exp(y)" Tag="exp(y)"/>
+                    <ComboBoxItem Content="log(x)" Tag="log(x)"/>
+                    <ComboBoxItem Content="log(y)" Tag="log(y)"/>
+                    <ComboBoxItem Content="sqrt(x)" Tag="sqrt(x)"/>
+                    <ComboBoxItem Content="sqrt(y)" Tag="sqrt(y)"/>
+                    <ComboBoxItem Content="x^2" Tag="x^2"/>
+                    <ComboBoxItem Content="y^2" Tag="y^2"/>
+                    <ComboBoxItem Content="x^y" Tag="x^y"/>
+                    <ComboBoxItem Content="y^x" Tag="y^x"/>
+                    <Separator/>
+                    <ComboBoxItem Content="sin(x)+cos(y)" Tag="sin(x)+cos(y)"/>
+                    <ComboBoxItem Content="x*y - sin(x)" Tag="x*y - sin(x)"/>
+                    <ComboBoxItem Content="exp(-x)*y" Tag="exp(-x)*y"/>
+                    <ComboBoxItem Content="log(x)+y" Tag="log(x)+y"/>
+                </ComboBox>
+
                 <Label Margin="15,0,0,0">x0 =</Label>
-                <TextBox x:Name="txtX0" Width="50" Text="{Binding X0}"/>
+                <TextBox x:Name="txtX0" Width="50" Text="{Binding X0Text, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Label Margin="5,0,0,0">y0 =</Label>
-                <TextBox x:Name="txtY0" Width="50" Text="{Binding Y0}"/>
+                <TextBox x:Name="txtY0" Width="50" Text="{Binding Y0Text, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Label Margin="5,0,0,0">X =</Label>
-                <TextBox x:Name="txtX" Width="50" Text="{Binding X}"/>
+                <TextBox x:Name="txtX" Width="50" Text="{Binding XText, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Label Margin="5,0,0,0">h =</Label>
-                <TextBox x:Name="txtH" Width="50" Text="{Binding H}"/>
+                <TextBox x:Name="txtH" Width="50" Text="{Binding HText, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         </GroupBox>
 
-        <!-- Кнопки управления -->
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
-            <Button x:Name="btnCalculate" Content="Рассчитать" Width="100" Height="32" 
-                    Command="{Binding CalculateCommand}" Background="LightBlue"/>
-            <Button x:Name="btnExcel" Content="Экспорт в Excel" Width="130" Height="32" 
-                    Command="{Binding ExportToExcelCommand}" Background="LightGreen"/>
-            <Button x:Name="btnWord" Content="Отчёт в Word" Width="120" Height="32" 
-                    Command="{Binding CreateWordReportCommand}" Background="LightYellow"/>
-            <Button x:Name="btnMatlab" Content="Интеграция с MATLAB" Width="160" Height="32" 
-                    Command="{Binding ExportToMatlabCommand}" Background="LightCoral"/>
-            <Button x:Name="btnMathcad" Content="Интеграция с Mathcad" Width="160" Height="32" 
-                    Command="{Binding IntegrateWithMathcadCommand}" Background="#FFDAB9"/>
-        </StackPanel>
-
-        <!-- Таблица результатов -->
-        <GroupBox Header="Результаты расчёта" Grid.Row="2">
+        <!-- ===== ТАБЛИЦА РЕЗУЛЬТАТОВ ===== -->
+        <GroupBox Header="Результаты расчёта" Grid.Row="3" Margin="5">
             <DataGrid x:Name="dgResults" 
                       ItemsSource="{Binding Results}" 
                       AutoGenerateColumns="True" 
@@ -75,13 +201,13 @@
                       RowHeight="22"/>
         </GroupBox>
 
-        <!-- График решения -->
-        <GroupBox Header="График решения" Grid.Row="3">
+        <!-- ===== ГРАФИК РЕШЕНИЯ ===== -->
+        <GroupBox Header="График решения" Grid.Row="4" Margin="5">
             <oxy:PlotView x:Name="plotView" Model="{Binding PlotModel}" />
         </GroupBox>
 
-        <!-- Статус бар -->
-        <StatusBar Grid.Row="4">
+        <!-- ===== СТАТУС БАР ===== -->
+        <StatusBar Grid.Row="5">
             <StatusBarItem>
                 <TextBlock x:Name="txtStatus" Text="{Binding Status}" FontWeight="Bold"/>
             </StatusBarItem>

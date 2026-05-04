@@ -3,6 +3,7 @@
     <Platform Name="Any CPU" />
     <Platform Name="x64" />
   </Configurations>
+  <Project Path="AboutLibra/AboutLibra.csproj" Id="7f36f0b0-af8a-4510-9407-9485881a78e2" />
   <Project Path="Курсовой проект/Курсовой проект.csproj" Id="fe045c6a-322f-460d-b5ee-49b4c5b6d45d">
     <Platform Solution="*|x64" Project="x64" />
   </Project>

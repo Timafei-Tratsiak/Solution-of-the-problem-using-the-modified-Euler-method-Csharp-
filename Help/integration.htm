@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Справка - Интеграция</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f5f5; }
+        h1 { color: #2C3E50; }
+        h2 { color: #3498DB; }
+        .section { background-color: white; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .menu { background-color: #2C3E50; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .menu a { color: white; text-decoration: none; margin-right: 15px; }
+        .menu a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <a href="index.htm">Главная</a>
+        <a href="interface.htm">Интерфейс</a>
+        <a href="algorithm.htm">Алгоритм</a>
+        <a href="integration.htm">Интеграция</a>
+        <a href="export.htm">Экспорт</a>
+    </div>
+
+    <h1>Интеграция с внешними системами</h1>
+    
+    <div class="section">
+        <h2> Интеграция с MATLAB</h2>
+        <p>Программа поддерживает интеграцию с MATLAB через COM-интерфейс. Передаются следующие данные:</p>
+        <ul>
+            <li>Начальные условия: x0, y0</li>
+            <li>Шаг интегрирования: h</li>
+            <li>Конечное значение: X</li>
+            <li>Функция f(x, y) как строка</li>
+        </ul>
+        <p>В MATLAB запускается решатель ode45 (адаптивный метод Рунге-Кутты 4/5 порядка), строится 2D и 3D графики.</p>
+    </div>
+
+    <div class="section">
+        <h2> Интеграция с Mathcad Prime</h2>
+        <p>Поддерживается COM-интеграция с Mathcad Prime 10. Программа передаёт:</p>
+        <ul>
+            <li>Числовые параметры: x0_input, y0_input, h_input, X_input</li>
+            <li>Функцию как строку: g</li>
+        </ul>
+        <p>Mathcad автоматически пересчитывает шаблон и строит график.</p>
+    </div>
+</body>
+</html>

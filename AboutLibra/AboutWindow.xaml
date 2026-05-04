@@ -1,0 +1,68 @@
+﻿<Window x:Class="AboutLibra.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="О программе" Height="454" Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False">
+
+    <Border Background="White" BorderBrush="#3498DB" BorderThickness="2" CornerRadius="10" Margin="0,0,0,-16">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Заголовок -->
+            <TextBlock Grid.Row="0" Text="Курсовая работа" 
+                       FontSize="22" FontWeight="Bold" Foreground="#2C3E50" 
+                       HorizontalAlignment="Center" Margin="0,10,0,5"/>
+
+            <TextBlock Grid.Row="1" Text="Решение дифференциального уравнения" 
+                       FontSize="16" Foreground="#34495E" 
+                       HorizontalAlignment="Center" Margin="0,0,0,5"/>
+
+            <TextBlock Grid.Row="2" Text="Модифицированный метод Эйлера" 
+                       FontSize="14" Foreground="#7F8C8D" 
+                       HorizontalAlignment="Center" Margin="0,0,0,15"/>
+
+            <!-- Разделитель -->
+            <Rectangle Grid.Row="3" Height="1" Fill="#3498DB" Margin="50,5"/>
+
+            <!-- Информация -->
+            <StackPanel Grid.Row="4" Margin="0,15">
+                <TextBlock Margin="20,2"><Run Text="Студент: "/><Run Language="ru-ru" Text="Третяк Тимофей Олегович"/></TextBlock>
+                <TextBlock Margin="20,2"><Run Text="Группа: "/><Run Language="ru-ru" Text="10701224"/></TextBlock>
+                <TextBlock Margin="20,2"><Run Text="Преподаватель: "/><Run Language="ru-ru" Text="Гурский Н.Н."/></TextBlock>
+                <TextBlock Text="Год: 2026" Margin="20,2"/>
+            </StackPanel>
+
+            <!-- Разделитель -->
+            <Rectangle Grid.Row="5" Height="1" Fill="#3498DB" Margin="50,5"/>
+
+            <!-- Описание метода -->
+            <StackPanel Grid.Row="6" Margin="0,10">
+                <TextBlock Text="Метод решения" FontWeight="Bold" Margin="20,0"/>
+                <TextBlock Text="Модифицированный метод Эйлера" 
+                           TextWrapping="Wrap" Margin="35,5"/>
+                <TextBlock Text="Формула: y_new = y + h·f(x + h/2, y + (h/2)·f(x, y))" 
+                           FontFamily="Courier New" TextWrapping="Wrap" Margin="35,5"/>
+            </StackPanel>
+
+            <!-- Кнопка Закрыть -->
+            <Button Grid.Row="8" Content="OK" Width="80" Height="30" 
+                    HorizontalAlignment="Center" Margin="0,15" 
+                    Click="OkButton_Click"/>
+        </Grid>
+    </Border>
+</Window>
